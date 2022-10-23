@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
@@ -22,7 +23,7 @@ int posicao(int vet[], int tam, int x){
     return pos;
 }
 
-int posicao_primeiro_homem(int vet[], int tam){
+void posicao_primeiro_homem(int vet[], int tam){
     int pos = 0;
     for(int i = 0; i < tam; i++){
         if(vet[i] > 0){
@@ -30,10 +31,10 @@ int posicao_primeiro_homem(int vet[], int tam){
             break;
         }
     }
-    return pos;
+    cout << pos << endl;
 }
 
-int posicao_menor_valor(int vet[], int tam){
+void posicao_menor_valor(int vet[], int tam){
     int aux = vet[0];
     int pos = 0;
     for(int i = 0; i < tam; i++){
@@ -42,10 +43,10 @@ int posicao_menor_valor(int vet[], int tam){
             pos = i;
         }
     }
-    return pos;
+    cout << pos << endl;
 }
 
-int homem_mais_calmo(int vet[], int tam){
+void homem_mais_calmo(int vet[], int tam){
     int aux = vet[0], pos {};
     for(int i = 0; i < tam ; i++){
         if(vet[i] > 0 && vet[i] < aux){
@@ -53,7 +54,7 @@ int homem_mais_calmo(int vet[], int tam){
             pos = i;
         }
     }
-    return pos;
+    cout << pos << endl;
 }
 
 int quantosX(int vet[], int tam, int x){
@@ -66,12 +67,24 @@ int quantosX(int vet[], int tam, int x){
     return cont;
 }
 
-int mediaStress(int vet[], int tam){
-    int soma = 0;
+void mediaStress(int vet[], int tam){
+    int soma1 = 0, soma2 = 0;
+    float result = 0;
     for(int i = 0; i < tam; i++){
-        soma = soma + vet[i];
+        if(vet[i] < 0){
+            soma1 = soma1 + vet[i];
+        }else{
+            soma2 = soma2 + vet[i];
+        }
     }
-    return soma/tam;
+    soma1 * -1;
+    int soma = soma1 + soma2;
+    result  = (float)soma/tam;
+    if(result < 0){
+        cout << fixed << setprecision(2) << result * -1 << endl;
+    }else{
+        cout << fixed << setprecision(2) << result << endl;
+    }
 }
 
 void metade_mais_estressada(int vet[], int tam){
@@ -83,11 +96,11 @@ void metade_mais_estressada(int vet[], int tam){
         segunda += vet[i];
     }
     if(primeira == segunda){
-        cout << "empate" << endl;
+        cout << "draw" << endl;
     }else if(primeira > segunda){
-        cout << "primeira" << endl;
+        cout << "first" << endl;
     }else{
-        cout << "segunda" << endl;
+        cout << "second" << endl;
     }
 }
 
@@ -101,11 +114,11 @@ void mais_homem_ou_mulher(int vet[], int tam){
         }
     }
     if(contM == contH){
-        cout << "existe a mesma quantidade de homens e melheres\n";
+        cout << "draw\n";
     }else if(contM > contH){
-        cout << "existe mais mulheres\n";
+        cout << "women\n";
     }else{
-        cout << "existe mais homens\n";
+        cout << "men\n";
     }
 }
 
@@ -120,61 +133,144 @@ void media_mais_estressada(int vet[], int tam){
     }
     mediaM_absoluto = mediaM * -1;
     if(mediaM_absoluto == mediaH){
-        cout << "estresse medio iguais\n";
+        cout << "draw\n";
     }else if(mediaM_absoluto > mediaH){
-        cout << "em media mulheres mais estressadas\n";
+        cout << "women\n";
     }else{
-        cout << "em media homens mais estressados\n";
+        cout << "men\n";
+    }
+}
+
+void show(int vet[], int tam, int x, string cmd){
+    cout << "$" << cmd << " " << "[";
+    for(int i = 0; i < tam; i++){
+        if(i != (tam - 1)){
+            cout << vet[i] << ", ";
+        }else{
+            cout << vet[i];
+        }
+    }
+    cout << "] " << x << endl;
+}
+
+void _show(int vet[], int tam, string cmd){
+    cout << "$" << cmd << " " << "[";
+    for(int i = 0; i < tam; i++){
+        if(i != (tam - 1)){
+            cout << vet[i] << ", ";
+        }else{
+            cout << vet[i];
+        }
+    }
+    cout << "] " << endl;
+}
+
+void preenche(int vet[], int tam){
+    for(int i = 0; i < tam; i++){
+        cin >> vet[i];
     }
 }
 
 int main (){
-    int tam;
-    int x;
-    cout << "digite o tamanho: ";
-    cin >> tam;
-    int vet[tam];
 
-    cout << "preencha o vetor" << endl;
-    for(int i = 0; i < tam; i++){
-        cin >> vet[i];
+    while (true){
+        string cmd;
+        cin >> cmd;
+
+        if(cmd == "in"){
+            int tam {};
+            cin >> tam;
+            int vet[tam];
+            preenche(vet, tam);
+            int el {};
+            cin >> el;
+            show(vet, tam, el, cmd);
+            if(existe(vet, tam, el) == true){
+                cout << true << endl;
+            }else{
+                cout << false << endl;
+            }
+        }
+        else if(cmd == "index_of"){
+            int tam {};
+            cin >> tam;
+            int vet[tam];
+            preenche(vet, tam);
+            int el {};
+            cin >> el;
+            show(vet, tam, el, cmd);
+            if(posicao(vet, tam, el) > 0){
+              cout << posicao(vet, tam, el) << endl;
+            }
+        }
+        else if(cmd == "find_if"){
+            int tam {};
+            cin >> tam;
+            int vet[tam];
+            preenche(vet, tam);
+            _show(vet, tam, cmd);
+            posicao_primeiro_homem(vet, tam);
+        }
+        else if(cmd == "min_element"){
+            int tam {};
+            cin >> tam;
+            int vet[tam];
+            preenche(vet, tam);
+            _show(vet, tam, cmd);
+            posicao_menor_valor(vet, tam);
+        }
+        else if(cmd == "find_min_if"){
+            int tam {};
+            cin >> tam;
+            int vet[tam];
+            preenche(vet, tam);
+            _show(vet, tam, cmd);
+            homem_mais_calmo(vet, tam);
+        }
+        else if(cmd == "count"){
+            int tam {};
+            cin >> tam;
+            int vet[tam];
+            preenche(vet, tam);
+            int el {};
+            cin >> el;
+            show(vet, tam, el, cmd);
+            cout << quantosX(vet, tam, el) << endl;
+        }
+        else if(cmd == "average"){
+            int tam {};
+            cin >> tam;
+            int vet[tam];
+            preenche(vet, tam);
+            _show(vet, tam, cmd);
+            mediaStress(vet, tam);
+        }
+        else if(cmd == "half_compares"){
+            int tam {};
+            cin >> tam;
+            int vet[tam];
+            preenche(vet, tam);
+            _show(vet, tam, cmd);
+            metade_mais_estressada(vet, tam);
+        }
+        else if(cmd == "more_men"){
+            int tam {};
+            cin >> tam;
+            int vet[tam];
+            preenche(vet, tam);
+            _show(vet, tam, cmd);
+            mais_homem_ou_mulher(vet, tam);
+        }
+        else if(cmd == "sex_battle"){
+            int tam {};
+            cin >> tam;
+            int vet[tam];
+            preenche(vet, tam);
+            _show(vet, tam, cmd);
+            media_mais_estressada(vet, tam);
+        }
+        else if(cmd == "end"){
+            break;
+        }
     }
-    cout << "digite um elemento: ";
-    cin >> x;
-
-    //verifica se existe x
-   if(existe(vet, tam, x) == true){
-        cout << "existe" << endl;
-   }else{
-    cout << x << " nao existe" << endl;
-   }
-
-    //verifica qual posição
-    if(posicao(vet, tam, x) > 0){
-        cout << "aparece na posicao: " << posicao(vet, tam, x) << endl;
-    }
-
-    //posicao do primeiro homem da fila
-    cout << "o primeiro homem aparece na posicao: " << posicao_primeiro_homem(vet, tam) << endl;
-
-    //posicao do menor valor
-    cout << "o menor valor ta na posicao: " << posicao_menor_valor(vet, tam) << endl;
-
-    //verifica homem mais calmo
-    cout << "o homem mais calmo ta na posicao: " << homem_mais_calmo(vet, tam) << endl;
-
-    //quantas vezes X aparece na fila
-    cout << "X aparece " << quantosX(vet, tam, 3) << " vezes na fila\n";
-
-    //estress medio
-    cout << "o stress medio e: " << mediaStress(vet, tam) << endl;
-
-    //qual metade é mais estressada
-    metade_mais_estressada(vet, tam);
-
-    //mais homems ou mulheres
-    mais_homem_ou_mulher(vet, tam);
-
-    //media mais estressada
-    media_mais_estressada(vet, tam);
 }
