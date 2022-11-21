@@ -1,3 +1,9 @@
+/*
+A atividade esta passando em todos os casos de teste.
+Pedi ajuda a um colega que já havia cursado POO anteriormente (Petrúcio), assiste a playlist do YT e vi alguns conteúdos na net.
+Consegui pegar bem o que a tarefa estava propondo, e aprimorei meus conhecimentos em outras bibliotecas.
+Gastei em média umas 4 horas para conseguir solucionar a questão.
+*/
 #include <iostream>
 #include <vector>
 #include <utility>

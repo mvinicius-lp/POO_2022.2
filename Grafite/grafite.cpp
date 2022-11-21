@@ -1,3 +1,10 @@
+/*
+Assisti uma video aula no YT e em seguida fiz a atividade com base na explicação
+do video, fiz usando minha lógica e a maneira que achei mais interessante para
+resolver os problemas.
+Realizei a atividade sozinho e pude melhorar minha forma de pensar e resolver os 
+problemas, gastei em torno de 4 horas resolvendo essa atividade. 
+*/
 #include <iostream>
 #include <sstream>
 #include <memory>  //sharedptr
