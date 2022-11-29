@@ -1,3 +1,12 @@
+/*
+Fiz a atividade com base em um material de arrays que encontrei na internet.
+Eu ja tinha feito essa questão anteriormente,fiz algumas adptaçoes para passar nos casos de teste e utilizei 
+minha lógica e a maneira que achei mais fácil para resolver os problemas da questão.
+Realizei a atividade sozinho com base em um material da net e pude melhorar minha forma de pensar e resolver os 
+problemas, gastei em torno de 4 horas resolvendo essa atividade.
+Consegui passar em todos os casos de teste.
+*/
+
 #include <iostream>
 #include <vector>
 #include <memory>
